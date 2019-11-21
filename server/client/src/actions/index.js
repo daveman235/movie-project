@@ -6,14 +6,14 @@ export const fetchMovies = (page = 1) => dispatch => {
   ).then(function (response) {
     dispatch({ type: FETCH_MOVIES, payload: response.data });
   })
-  .catch(function (error) {
-    console.log(error);
-  });
+    .catch(function (error) {
+      console.log(error);
+    });
 };
 
 export const signup = (formProps, callback) => dispatch => {
   axios.post(
-    'http://localhost:5000/auth/signup',
+    'auth/signup',
     formProps
   ).then(function (response) {
     dispatch({ type: AUTH_USER, payload: response.data });
@@ -21,14 +21,14 @@ export const signup = (formProps, callback) => dispatch => {
     localStorage.setItem('email', response.data.email);
     callback();
   })
-  .catch(function (error) {
-    dispatch({ type: AUTH_ERROR, payload: 'Email in use' });
-  });
+    .catch(function (error) {
+      dispatch({ type: AUTH_ERROR, payload: 'Email in use' });
+    });
 };
 
 export const signin = (formProps, callback) => dispatch => {
   axios.post(
-    'http://localhost:5000/auth/signin',
+    'auth/signin',
     formProps
   ).then(function (response) {
     dispatch({ type: AUTH_USER, payload: response.data });
@@ -36,9 +36,9 @@ export const signin = (formProps, callback) => dispatch => {
     localStorage.setItem('email', response.data.email);
     callback();
   })
-  .catch(function (error) {
-    dispatch({ type: AUTH_ERROR, payload: 'Email in use' });
-  });
+    .catch(function (error) {
+      dispatch({ type: AUTH_ERROR, payload: 'Email in use' });
+    });
 };
 
 export const signout = () => {
